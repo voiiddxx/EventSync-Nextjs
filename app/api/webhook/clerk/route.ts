@@ -71,7 +71,7 @@ export async function POST(req: Request) {
             }
 
             try {
-                connectToDatabase();
+               await connectToDatabase();
                 const newUser = await User.create(user);
                 const registerUser = await JSON.parse(JSON.stringify(newUser));
                 if(registerUser) {
