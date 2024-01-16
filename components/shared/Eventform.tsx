@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -27,10 +26,17 @@ import { Textarea } from "../ui/textarea"
 import DatePicker from "react-datepicker";
 import { useState } from "react"
 import "react-datepicker/dist/react-datepicker.css";
- 
+import { createEvent } from "@/lib/actions/event.action"
+import { currentUser } from "@clerk/nextjs"
 
-const Eventform = () => {
+    type eventFormprops = {
+        userId: string | undefined
+    }
 
+const Eventform = ({userId}:eventFormprops) => {
+
+
+    
     
   const [ImageToSubmit, setImageToSubmit] = useState<any>();
 
@@ -53,9 +59,10 @@ const Eventform = () => {
 
       const eventType = form.watch("eventType");
 
-      function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(ImageToSubmit);
-        
+     async function onSubmit(values: z.infer<typeof formSchema>) {
+        if(ImageToSubmit!=null){
+            const newuser = await createEvent({event:{...values , imageUrl:"knbns"} , userId})
+        }
             console.log(values)
       }
   return (
