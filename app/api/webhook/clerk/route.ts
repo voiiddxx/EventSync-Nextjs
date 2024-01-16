@@ -1,7 +1,10 @@
+"use server"
+
+
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent, clerkClient } from '@clerk/nextjs/server'
-import { connectToDatabase } from '@/lib/database/mongodb'
+import  connectToDatabase  from '@/lib/database/mongodb'
 import User from '@/lib/database/models/user.model'
 import { NextResponse } from 'next/server'
  
@@ -60,9 +63,10 @@ export async function POST(req: Request) {
     const {id , first_name , last_name ,  email_addresses , username , image_url} = evt.data;
             const user = {
                 clerkid:id,
-                firstname:first_name,
-                email:email_addresses[0].email_address,
                 username:username,
+                email:email_addresses[0].email_address,
+                firstname:first_name,
+                lastname:last_name,
                 avatar:image_url
             }
 
