@@ -14,8 +14,8 @@ let cached = (global as any).mongoose || {conn:null , promise:null};
         if(!MONGODB_URI) {
             throw new Error("Mongodb uri is missing");
         }
-        cached.promise = cached.promise || mongoose.connect("mongodb+srv://void:EventSync@cluster0.rkwpe3p.mongodb.net/?retryWrites=true&w=majority" , {
-            dbName:'EventSync',
+        cached.promise = cached.promise || mongoose.connect("mongodb+srv://ursfan8102003:Tech-Talk@cluster0.9hc7qae.mongodb.net/?retryWrites=true&w=majority" , {
+            dbName:'TECH-TALK',
             bufferCommands:false
         }).then(() => {
             console.log("database connected");
