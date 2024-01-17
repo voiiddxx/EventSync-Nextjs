@@ -1,7 +1,10 @@
 import Eventform from "@/components/shared/Eventform"
+import { currentUser } from "@clerk/nextjs";
 
-const page = () => {
+const page = async () => {
 
+  const user = await currentUser();
+  const userId = user?.id;
 
   return (
     <div className="min-h-screen w-full bg-slate-50">
@@ -10,7 +13,7 @@ const page = () => {
         <p>Please fill all the imformation details to crerate Event</p>
      </div>
      <div className="min-h-[650px] w-full bg-white flex justify-center items-center">
-     <Eventform/>
+     <Eventform userId={userId}/>
      </div>
     </div>
   )

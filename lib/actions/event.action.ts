@@ -2,13 +2,20 @@
 
 import { createEventParams } from "@/types";
 import connectToDatabase from "../database/mongodb";
+import User from "../database/models/user.model";
 
 
 
-export const createEvent = async ({userId , event} : createEventParams) => {
+export const createEvent = async ({userId , event , path} : createEventParams) => {
     try {
         await connectToDatabase();
-        console.log(userId , event);
+
+        const organizer = await User.find({});
+        console.log(organizer);
+        
+        
+        
+        
         
 
     } catch (error) {

@@ -61,7 +61,7 @@ const Eventform = ({userId}:eventFormprops) => {
 
      async function onSubmit(values: z.infer<typeof formSchema>) {
         if(ImageToSubmit!=null){
-            const newuser = await createEvent({event:{...values , imageUrl:"knbns"} , userId})
+            const newuser = await createEvent({event:{...values , imageUrl:"knbns"} , userId , path:'/profile'})
         }
             console.log(values)
       }
