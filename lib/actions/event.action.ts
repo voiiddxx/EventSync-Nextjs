@@ -9,8 +9,10 @@ import User from "../database/models/user.model";
 export const createEvent = async ({userId , event , path} : createEventParams) => {
     try {
         await connectToDatabase();
-
-        const organizer = await User.find({});
+        
+        console.log("testing again");
+        
+        const organizer = await User.findOne({clerkId:userId});
         console.log(organizer);
         
         
