@@ -1,11 +1,15 @@
 import Eventform from "@/components/shared/Eventform"
-import { currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 
 const page = async () => {
 
-  const user = await currentUser();
-  const userId = user?.id;
 
+
+  const {sessionClaims} = auth();
+
+  const userId = sessionClaims?.userId as string;
+
+  
   return (
     <div className="min-h-screen w-full bg-slate-50">
      <div className="h-20 w-full bg-slate-200 flex items-start justify-center flex-col pl-14">
