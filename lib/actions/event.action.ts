@@ -1,6 +1,6 @@
 "use server"
 
-import { createEventParams } from "@/types";
+import { createEventParams , GetAllEventsParams } from "@/types";
 import connectToDatabase from "../database/mongodb";
 import User from "../database/models/user.model";
 import Event from "../database/models/event.model";
@@ -10,7 +10,7 @@ import { revalidatePath } from "next/cache";
 
         const populateEvent = async ( query: any) => {
             return query
-            .populate({path:'organizer' , model: User , select: '_id username email' });
+            .populate({ path: 'organizer', model: User, select: '_id username' })
 
         }
 
@@ -30,6 +30,25 @@ export const getEventById =async  ( eventId: string) => {
     }
 }
 
+
+
+    export const getAllevents = async  ({query , limit =1 , page , category}: GetAllEventsParams) => {
+        try {
+            await connectToDatabase();
+            const conditions = {};
+            const eventsQuery = await populateEvent(Event.find(conditions).limit(limit));
+            const eventCount = await Event.countDocuments(conditions);
+            return {
+                data:JSON.parse(JSON.stringify(eventsQuery)),
+                totalpages: Math.ceil(eventCount / limit)
+            };
+
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
 
 export const createEvent = async ({userId , event , path} : createEventParams) => {
     try {

@@ -26,3 +26,11 @@ export type SearchParamProps = {
     params: { id: string }
     searchParams: { [key: string]: string | string[] | undefined }
   }
+
+
+  export type GetAllEventsParams = {
+    query: string
+    category:string
+    limit?:number 
+    page: number | string
+  }
