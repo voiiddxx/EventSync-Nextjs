@@ -28,6 +28,7 @@ import { useState } from "react"
 import "react-datepicker/dist/react-datepicker.css";
 import { createEvent } from "@/lib/actions/event.action"
 import axios from 'axios';
+import { useRouter } from "next/navigation"
 
     type eventFormprops = {
         userId: string | undefined
@@ -36,7 +37,8 @@ import axios from 'axios';
 const Eventform = ({userId}:eventFormprops) => {
 
 
-    
+    const router = useRouter();
+
     
   const [ImageToSubmit, setImageToSubmit] = useState<any>();
 
@@ -68,7 +70,15 @@ const Eventform = ({userId}:eventFormprops) => {
           const response = await axios.post("https://api.cloudinary.com/v1_1/dwkmxsthr/upload" , formdata ,);
           const imagedata = await response.data;
           console.log("this is imager url",imagedata.url);
-            const newuser = await createEvent({event:{...values , imageUrl:imagedata.url} , userId , path:'/profile'})
+            const newEvent = await createEvent({event:{...values , imageUrl:imagedata.url} , userId , path:'/profile'})
+
+            if(newEvent){
+              form.reset();
+              router.push(`/events/${newEvent._id}`)
+            }
+
+
+            
         }
            
       }

@@ -20,3 +20,9 @@ export type createEventParams = {
     },
     path:string,
 }
+
+
+export type SearchParamProps = {
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+  }
