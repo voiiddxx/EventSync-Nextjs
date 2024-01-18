@@ -27,7 +27,7 @@ import DatePicker from "react-datepicker";
 import { useState } from "react"
 import "react-datepicker/dist/react-datepicker.css";
 import { createEvent } from "@/lib/actions/event.action"
-import { currentUser } from "@clerk/nextjs"
+import axios from 'axios';
 
     type eventFormprops = {
         userId: string | undefined
@@ -61,9 +61,16 @@ const Eventform = ({userId}:eventFormprops) => {
 
      async function onSubmit(values: z.infer<typeof formSchema>) {
         if(ImageToSubmit!=null){
-            const newuser = await createEvent({event:{...values , imageUrl:"knbns"} , userId , path:'/profile'})
+
+          let formdata = new FormData();
+          formdata.append("file" , ImageToSubmit[0]);
+          formdata.append("upload_preset" , "pdrcp1le");
+          const response = await axios.post("https://api.cloudinary.com/v1_1/dwkmxsthr/upload" , formdata ,);
+          const imagedata = await response.data;
+          console.log("this is imager url",imagedata.url);
+            const newuser = await createEvent({event:{...values , imageUrl:imagedata.url} , userId , path:'/profile'})
         }
-            console.log(values)
+           
       }
   return (
     <Form {...form}>
