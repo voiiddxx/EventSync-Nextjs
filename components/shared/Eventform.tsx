@@ -91,7 +91,7 @@ const Eventform = ({userId}:eventFormprops) => {
         control={form.control}
         name="title"
         render={({ field }) => (
-          <FormItem className="w-80">
+          <FormItem className="w-80 bg-slate-50 border-solid border-2 border-x-white border-y-white">
             <FormControl>
               <Input placeholder="Event Title" {...field} />
             </FormControl>
@@ -122,6 +122,7 @@ const Eventform = ({userId}:eventFormprops) => {
       
       </div>
 
+      
       
       {
         eventType == "paid" && (
