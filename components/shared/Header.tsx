@@ -4,11 +4,11 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
 
 const Header = () => {
+
   return (
-    <div className='h-20 w-full bg-slate-50 flex items-center justify-around'>
+    <div className="nav-hero">
+      <div className='h-20 w-full bg-transparent flex items-center justify-around'>
         <h1>EventSync</h1>
-
-
         <SignedIn>
             <UserButton afterSignOutUrl='/'></UserButton>
         </SignedIn>
@@ -19,7 +19,7 @@ const Header = () => {
             </Link>
         </Button>
         </SignedOut>
-      
+    </div>
     </div>
   )
 }
