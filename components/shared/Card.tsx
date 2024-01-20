@@ -4,19 +4,20 @@ import Image from "next/image"
 
 type cardprops = {
   curr: IEvent
+  hasOrderLink?:boolean
 }
 
-const Card = ({curr} : cardprops) => {
+const Card = ({curr , hasOrderLink} : cardprops) => {
 
   console.log("this is " ,curr);
   
   return (
     <div className="h-80 w-80 bg-white flex flex-col rounded-md">
-      <div className="h-32 w-full bg-red-900">
-       <Image src={curr.imageUrl} height={1000} width={1000} className="h-full w-full" alt="banner"/>
+      <div className="h-40 w-full">
+       <Image src={curr.imageUrl} height={1000} width={1000} className="h-full w-full rounded-tl-lg rounded-tr-xl" alt="banner"/>
       </div>
      <div className="flex ">  
-     <div className="bg-yellow-200 w-20 flex items-center justify-center mt-3 ml-4 rounded-md">
+     <div className="bg-yellow-200 w-12 flex items-center justify-center mt-3 ml-4 rounded-md">
        {
         curr.eventType=="free" ?  <p className="text-sm text-grey">free </p> :  <p className="text-sm text-grey">{curr.price}</p>
        }
@@ -30,8 +31,14 @@ const Card = ({curr} : cardprops) => {
      <h4 className="mt-3 text-gray-700 text-sm">Tue 24 Nov 2:00 PM</h4>
       <h1 className="mt-2 font-bold">{curr.title}</h1>
      </div>
-     <div className="mb-3">
+     <div className="mb-3 flex justify-between">
       <p className="text-gray-500 text-sm">Created By | {curr.organizer.username}</p>
+      {
+      hasOrderLink && (
+        <p className="text-gray-500 text-sm mr-11">order details</p>
+      )   
+      }
+      
      </div>
 
      </div>

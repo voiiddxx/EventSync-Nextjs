@@ -38,7 +38,8 @@ const Collection = ({
             <div className='w-full bg-gray-100 flex  gap-4 flex-wrap justify-center pt-11 pb-11'>
                 {
                     data.map((curr , index)=>{
-                        return <Card key={index} curr={curr}/>
+                        const hasOrderLink = collectionTypes == 'EVENT_ORGANIZED';
+                        return <Card key={index} curr={curr} hasOrderLink={hasOrderLink}/>
                     })
                 }
             </div>

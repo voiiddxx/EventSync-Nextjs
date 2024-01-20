@@ -34,3 +34,9 @@ export type SearchParamProps = {
     limit?:number 
     page: number | string
   }
+
+  export type GeteventcreatedByuserParams = {
+      userId: string
+      limit?: number
+      page: number
+  }

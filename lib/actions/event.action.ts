@@ -1,6 +1,6 @@
 "use server"
 
-import { createEventParams , GetAllEventsParams } from "@/types";
+import { createEventParams , GetAllEventsParams, GeteventcreatedByuserParams } from "@/types";
 import connectToDatabase from "../database/mongodb";
 import User from "../database/models/user.model";
 import Event from "../database/models/event.model";
@@ -49,6 +49,32 @@ export const getEventById =async  ( eventId: string) => {
             
         }
     }
+
+
+    export const getEventcreatedbyUser = async ({userId , limit = 6 , page} : GeteventcreatedByuserParams) => {
+        try {
+                await connectToDatabase();
+                
+                const condition = {
+                    organizer: userId
+                }
+
+                const createdEvent = await populateEvent(Event.find(condition));
+                const eventcound = await Event.countDocuments(condition);
+
+                return {
+                    data: JSON.parse(JSON.stringify(createdEvent)),
+                    totalpages : Math.ceil(eventcound / limit)
+                }
+
+        } catch (error) {
+            console.log(error);
+            
+            throw new Error("Some error occured");
+        }
+    }
+
+
 
 export const createEvent = async ({userId , event , path} : createEventParams) => {
     try {
