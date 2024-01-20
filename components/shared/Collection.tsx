@@ -1,5 +1,6 @@
 import { IEvent } from '@/lib/database/models/event.model'
 import React from 'react'
+import Card from './Card'
 
 
 
@@ -34,10 +35,10 @@ const Collection = ({
     }
     else{
         return (
-            <div>
+            <div className='w-full bg-gray-100 flex  gap-4 flex-wrap justify-center pt-11 pb-11'>
                 {
                     data.map((curr , index)=>{
-                        return <h1>{curr.title}</h1>
+                        return <Card key={index} curr={curr}/>
                     })
                 }
             </div>

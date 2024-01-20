@@ -18,7 +18,7 @@ export default async function Home() {
   
   
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex  flex-col items-center justify-between">
       <div className="hero">
         <h1>
         Explore Events  Around You And <br /> Get Connect With Real World
@@ -38,7 +38,7 @@ export default async function Home() {
           
         </div>
       </div>
-      <Collection
+      <Collection 
       data={events?.data}
       emptyTitle="No events found"
       emptySubtitle="There is no Events for now , Please come back later"

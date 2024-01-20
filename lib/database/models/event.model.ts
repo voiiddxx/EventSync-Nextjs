@@ -11,7 +11,7 @@ export interface IEvent extends Document {
     startDate: Date;
     endDate: Date;
     price: string;
-    eventType: boolean;
+    eventType: string;
     url?: string;
     organizer: { _id: string, username: string, email: string }
   }
