@@ -1,6 +1,7 @@
 import Collection from "@/components/shared/Collection"
 import { Button } from "@/components/ui/button"
-import { getAllevents, getEventcreatedbyUser } from "@/lib/actions/event.action";
+import { getAllevents, getEventById, getEventcreatedbyUser } from "@/lib/actions/event.action";
+import { getuserOrder } from "@/lib/actions/order.action";
 import { auth } from "@clerk/nextjs";
 
 const page = async () => {
@@ -18,7 +19,16 @@ const page = async () => {
     userId:userId,
     page:1,
     limit:6
-  }) 
+  });
+  
+  const orders = await getuserOrder(userId);
+  let orderData = [];
+  for(let i =0;i<orders.length;i++){
+    orderData.push(orders[i].event);
+  }
+
+
+
   return (
     <>
     <div>
@@ -28,16 +38,20 @@ const page = async () => {
     </h1>
     <Button  className="bg-blue-800 h-10 rounded-full">Explore More Events</Button>
       </div>
-      {/* <Collection 
-      data={userEvents?.data}
+      {
+        orders && (
+          <Collection 
+      data={orderData}
       emptyTitle="No events found"
       emptySubtitle="There is no Events for now , Please come back later"
-      collectionTypes="ALL_EVENTS"
+      collectionTypes="MY_TICKET"
       limit={6}
       page={1}
       totoalPages={2}
       urlParams=''
-      /> */}
+      />
+        )
+      }
     </div>
     {/* EVents Created by user */}
     <div>

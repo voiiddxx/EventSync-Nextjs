@@ -1,13 +1,7 @@
 import { IEvent } from '@/lib/database/models/event.model'
 import React from 'react'
 import Card from './Card'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
+
 import Category from './category'
   
 
@@ -37,9 +31,12 @@ const Collection = ({
 } : collectionProps) => {
 
     if(data.length<1){
-        return (<div>
-            <h1>No data available</h1>
-        </div>)
+        return (
+        <div className='h-16  bg-gray-200 mt-9 rounded-md flex justify-center items-center flex-col p-16'>
+            <h1 className='text-orange-400 font-bold' >No data available</h1>
+            <p>Please Try Again after Some time</p>
+        </div>
+        )
     }
     else{
         return (
@@ -49,7 +46,9 @@ const Collection = ({
                 {
                     data.map((curr , index)=>{
                         const hasOrderLink = collectionTypes == 'EVENT_ORGANIZED';
-                        return <Card key={index} curr={curr} hasOrderLink={hasOrderLink}/>
+                        const allEvents = collectionTypes == 'ALL_EVENTS' 
+                        const OrganizedEvent = collectionTypes == 'EVENT_ORGANIZED'
+                        return <Card key={index} curr={curr} hasOrderLink={hasOrderLink} allEvents={allEvents} OrganizedEvent={OrganizedEvent} />
                     })
                 }
             </div>

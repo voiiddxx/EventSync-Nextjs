@@ -14,7 +14,7 @@ import { GetAllEventsParams, GeteventcreatedByuserParams, createEventParams } fr
 
         }
 
-export const getEventById =async  ( eventId: string) => {
+export const getEventById = async  ( eventId: string) => {
     try {
         
         connectToDatabase();

@@ -5,9 +5,11 @@ import Image from "next/image"
 type cardprops = {
   curr: IEvent
   hasOrderLink?:boolean
+  allEvents:boolean
+  OrganizedEvent:boolean
 }
 
-const Card = ({curr , hasOrderLink} : cardprops) => {
+const Card = ({curr , hasOrderLink , allEvents , OrganizedEvent} : cardprops) => {
 
   console.log("this is " ,curr);
   
@@ -32,7 +34,16 @@ const Card = ({curr , hasOrderLink} : cardprops) => {
       <h1 className="mt-2 font-bold">{curr.title}</h1>
      </div>
      <div className="mb-3 flex justify-between">
-      <p className="text-gray-500 text-sm">Created By | {curr.organizer.username}</p>
+     {
+      allEvents && (
+        <p className="text-gray-500 text-sm">Created By | {curr.organizer.username}</p>
+      )
+     }
+     {
+      OrganizedEvent && (
+        <p className="text-gray-500 text-sm">Created By | {curr.organizer.username}</p>
+      )
+     }
       {
       hasOrderLink && (
         <p className="text-gray-500 text-sm mr-11">order details</p>
