@@ -54,7 +54,9 @@ export type SearchParamProps = {
   }
 
 
-  export type SearchParamProps = {
-    params: { id: string }
-    searchParams: { [key: string]: string | string[] | undefined }
+
+  export type OrderParams = {
+    buyer:string
+    event: any
+    createdAt?: Date
   }
