@@ -1,3 +1,5 @@
+"use server"
+
 import { OrderParams } from "@/types";
 import connectToDatabase from "../database/mongodb";
 import Order from "../database/models/order.model";

@@ -1,6 +1,4 @@
-
-import React from 'react'
-import { Button } from '../ui/button'
+"use client"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -12,33 +10,49 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-import { auth } from '@clerk/nextjs'
 import { OrderEvent } from '@/lib/actions/order.action'
+import { auth, useUser } from '@clerk/nextjs'
+import { useRouter } from "next/navigation"
 
     
 
 const OrderButton = (event : any ) => {
-    
-  const {sessionClaims} = auth();
 
-  const userId = sessionClaims?.userId as string;
+  const router = useRouter();
 
 
-    const order = {
+  const {user } = useUser();
+  const userId = user?.publicMetadata.userId as string;
+
+    const orderdetail = {
         buyer: userId,
         event: event.event
     }
 
 
-    const participateInEvent = async () => {
-        try {
-            const getOrder = await OrderEvent(order);
-        } catch (error) {
-            console.log(error);
-            throw new Error("some error occured");
-        }
-    }
 
+ 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e: React.FormEvent<HTMLFormElement>) => {
+        try {
+          const getOrder = await OrderEvent(orderdetail);
+          if(getOrder){
+            router.push("/profile")
+          }
+          else{
+            alert("got some error")
+            
+          }
+        } catch (error) {
+          throw error as string
+        }
+  };
+
+    
+  
+
+
+
+    
     
     
   return (
@@ -54,7 +68,10 @@ const OrderButton = (event : any ) => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction className='bg-orange-700'>Register</AlertDialogAction>
+           <form onSubmit={handleSubmit}
+           >
+            <AlertDialogAction type='submit' className='bg-orange-700'>Register</AlertDialogAction>
+           </form>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
