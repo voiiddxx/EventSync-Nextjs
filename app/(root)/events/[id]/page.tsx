@@ -1,7 +1,7 @@
 import Collection from '@/components/shared/Collection';
 import { Button } from '@/components/ui/button';
 import { getAllevents, getEventById } from '@/lib/actions/event.action'
-import { SearchParamProps } from '@/types'
+import { SearchParamProps } from '@/components/shared'
 import Image from 'next/image';
 import React from 'react'
 

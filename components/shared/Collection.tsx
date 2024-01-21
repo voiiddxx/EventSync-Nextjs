@@ -1,7 +1,15 @@
 import { IEvent } from '@/lib/database/models/event.model'
 import React from 'react'
 import Card from './Card'
-
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
+import Category from './category'
+  
 
 
 
@@ -35,6 +43,8 @@ const Collection = ({
     }
     else{
         return (
+            <>
+           <Category/>
             <div className='w-full bg-gray-100 flex  gap-4 flex-wrap justify-center pt-11 pb-11'>
                 {
                     data.map((curr , index)=>{
@@ -43,6 +53,7 @@ const Collection = ({
                     })
                 }
             </div>
+            </>
         )
     }
   

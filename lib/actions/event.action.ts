@@ -1,10 +1,10 @@
 "use server"
 
-import { createEventParams , GetAllEventsParams, GeteventcreatedByuserParams } from "@/types";
 import connectToDatabase from "../database/mongodb";
 import User from "../database/models/user.model";
 import Event from "../database/models/event.model";
 import { revalidatePath } from "next/cache";
+import { GetAllEventsParams, GeteventcreatedByuserParams, createEventParams } from "@/types";
 
 
 
@@ -35,7 +35,12 @@ export const getEventById =async  ( eventId: string) => {
     export const getAllevents = async  ({query , limit =1 , page , category}: GetAllEventsParams) => {
         try {
             await connectToDatabase();
-            const conditions = {};
+            const titlecondition = query ? {title: {$regex:query , $options:'i'}}: {}
+
+            const conditions = {
+                $and: [titlecondition]
+            };
+
             const eventsQuery = await populateEvent(Event.find(conditions).limit(limit));
             const eventCount = await Event.countDocuments(conditions);
             return {

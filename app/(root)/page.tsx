@@ -3,18 +3,22 @@ import Collection from '@/components/shared/Collection'
 import { getAllevents } from '@/lib/actions/event.action'
 import "./hero.css"
 import Image from 'next/image';
+import Search from '@/components/shared/search';
+import { SearchParamProps } from '@/types';
 
-export default async function Home() {
+export default async function Home({searchParams}:SearchParamProps) {
 
+
+  const searchtext = (searchParams?.query as string) || ''
   const events = await getAllevents({
-    query:'',
+    query:searchtext,
     category:'',
     page:1,
     limit:5
   });
 
 
-  console.log(events);
+
   
   
   return (
@@ -27,16 +31,7 @@ export default async function Home() {
         I’ve written on why traditional “semantic class names” are the reason CSS is <br /> hard to maintain, but the truth is you’re never going to believe 
         </p>
 
-        <div className="search">
-           <div className="left">
-           <Image src="/icon.svg" className='ml-4' height={45} width={45} alt='searchicon'></Image>
-            <input placeholder='Search Events here'/>
-           </div>
-           <div className="right">
-            <h3 className='submit'>Search</h3>
-           </div>
-          
-        </div>
+       <Search/>
       </div>
       <Collection 
       data={events?.data}
