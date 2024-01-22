@@ -32,7 +32,7 @@ const Collection = ({
 
     if(data.length<1){
         return (
-        <div className='h-16  bg-gray-200 mt-9 rounded-md flex justify-center items-center flex-col p-16'>
+        <div className='h-16  bg-gray-200 mt-9 rounded-md flex justify-center items-center flex-col p-14'>
             <h1 className='text-orange-400 font-bold' >No data available</h1>
             <p>Please Try Again after Some time</p>
         </div>
