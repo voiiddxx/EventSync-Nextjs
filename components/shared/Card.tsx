@@ -1,5 +1,6 @@
 import { IEvent } from "@/lib/database/models/event.model"
 import Image from "next/image"
+import Link from "next/link"
 
 
 type cardprops = {
@@ -10,8 +11,6 @@ type cardprops = {
 }
 
 const Card = ({curr , hasOrderLink , allEvents , OrganizedEvent} : cardprops) => {
-
-  console.log("this is " ,curr);
   
   return (
     <div className="h-80 w-80 bg-white flex flex-col rounded-md">
@@ -46,7 +45,15 @@ const Card = ({curr , hasOrderLink , allEvents , OrganizedEvent} : cardprops) =>
      }
       {
       hasOrderLink && (
-        <p className="text-gray-500 text-sm mr-11">order details</p>
+      <Link href={{
+        pathname:'/orders',
+        query:{
+          'eventId':curr._id
+        }
+
+      }}>
+      <p className="text-gray-500 text-sm mr-11">order details</p>
+      </Link>
       )   
       }
       
