@@ -20,7 +20,7 @@ import User from "../database/models/user.model";
 
     const populateUserorder = (query: any) => {
         return query
-        .populate({path:'buyer' , model:User , select:'username email avatar'});
+        .populate({path:'buyer' , model:User , select:'_id username email avatar'});
     }
 
 export const OrderEvent =  async (order : OrderParams) => {
@@ -68,8 +68,7 @@ export const getOrderdetailbyeventId = async (eventId: string) => {
             event: eventId,
         }
         const order = await populateUserorder(Order.find(condition));
-        console.log(order);
-        
+        return JSON.parse(JSON.stringify(order));
         
     } catch (error) {
         console.log(error);
