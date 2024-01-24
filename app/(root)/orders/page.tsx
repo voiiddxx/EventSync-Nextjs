@@ -8,6 +8,7 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
+import { formatDateTime } from '@/lib/utils';
   
 
 const page = async ({searchParams} : {
@@ -17,7 +18,7 @@ const page = async ({searchParams} : {
 }) => {
     const orderdetail = await getOrderdetailbyeventId(searchParams.eventId);
     
-    
+        
     
 
     if(orderdetail.length<1){
@@ -44,9 +45,10 @@ const page = async ({searchParams} : {
                     <TableHeader>
                         <TableRow>
                         <TableHead className="w-[300px]">OrderID</TableHead>
-                        <TableHead className='text-left w-[200px]'>buyer Username</TableHead>
-                        <TableHead className="text-left w-[300px]">Participant Email</TableHead>
+                        <TableHead className='text-left w-[150px]'>Username</TableHead>
+                        <TableHead className="text-left w-[250px]">Email</TableHead>
                         <TableHead>BuyerID</TableHead>
+                        <TableHead>CreatedAt</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -55,6 +57,7 @@ const page = async ({searchParams} : {
                         <TableCell>{curr.buyer.username}</TableCell>
                         <TableCell>{curr.buyer.email}</TableCell>
                         <TableCell className="text-right">{curr.buyer._id}</TableCell>
+                        <TableCell className="text-right">{formatDateTime(curr.cretaedAt).dateTime}</TableCell>
                         </TableRow>
                     </TableBody>
                     </Table>

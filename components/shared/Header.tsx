@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className="nav-hero">
       <div className='h-20 w-full bg-transparent flex items-center justify-around'>
-        <h1>EventSync</h1>
+        <h1 className='font-bold text-black '>EventSync</h1>
         <SignedIn>
             <UserButton afterSignOutUrl='/'></UserButton>
         </SignedIn>

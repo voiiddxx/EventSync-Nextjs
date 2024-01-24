@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { getAllevents, getEventById, getEventcreatedbyUser } from "@/lib/actions/event.action";
 import { getuserOrder } from "@/lib/actions/order.action";
 import { auth } from "@clerk/nextjs";
+import Link from "next/link";
 
 const page = async () => {
 
@@ -33,10 +34,10 @@ const page = async () => {
     <>
     <div>
       <div className="h-28 w-full bg-slate-200 flex justify-between pl-8 items-center pr-8">
-    <h1 className="text-2xl font-bold text-gray-900">
+    <h1 className="text-2xl font-bold text-gray-900 ml-40">
       Participated Events
     </h1>
-    <Button  className="bg-blue-800 h-10 rounded-full">Explore More Events</Button>
+    <Link href={`/`} ><Button  className="bg-blue-800 h-10 rounded-full mr-40">Explore More Events</Button></Link>
       </div>
       {
         orders && (
@@ -55,11 +56,11 @@ const page = async () => {
     </div>
     {/* EVents Created by user */}
     <div>
-      <div className="h-28 w-full bg-slate-200 flex justify-between pl-8 items-center pr-8">
-    <h1 className="text-2xl font-bold text-gray-900">
+      <div className="h-28 w-full bg-slate-200 flex justify-between pl-44 items-center pr-8">
+    <h1 className="text-2xl font-bold text-gray-900 ">
       Your Events
     </h1>
-    <Button  className="bg-blue-800 h-10 rounded-full">Create Events</Button>
+      <Link href={`/events/create`} > <Button  className="bg-blue-800 h-10 rounded-full mr-32">Create Events</Button></Link>
       </div>
       <Collection 
       data={userEvents?.data}

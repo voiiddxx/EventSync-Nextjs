@@ -1,4 +1,5 @@
 import { IEvent } from "@/lib/database/models/event.model"
+import { formatDateTime } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -15,7 +16,9 @@ const Card = ({curr , hasOrderLink , allEvents , OrganizedEvent} : cardprops) =>
   return (
     <div className="h-80 w-80 bg-white flex flex-col rounded-md">
       <div className="h-40 w-full">
+       <Link href={`/events/${curr._id}`}>
        <Image src={curr.imageUrl} height={1000} width={1000} className="h-full w-full rounded-tl-lg rounded-tr-xl" alt="banner"/>
+       </Link>
       </div>
      <div className="flex ">  
      <div className="bg-yellow-200 w-12 flex items-center justify-center mt-3 ml-4 rounded-md">
@@ -29,7 +32,7 @@ const Card = ({curr , hasOrderLink , allEvents , OrganizedEvent} : cardprops) =>
      </div>
      <div className="h-full w-full ml-5 flex flex-col justify-between">
      <div>
-     <h4 className="mt-3 text-gray-700 text-sm">Tue 24 Nov 2:00 PM</h4>
+     <h4 className="mt-3 text-gray-700 text-sm">{formatDateTime(curr.startDate).dateTime}</h4>
       <h1 className="mt-2 font-bold">{curr.title}</h1>
      </div>
      <div className="mb-3 flex justify-between">

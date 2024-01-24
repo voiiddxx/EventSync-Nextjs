@@ -17,6 +17,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import OrderButton from '@/components/shared/OrderButton';
+import { formatDateTime } from '@/lib/utils';
 
 
 
@@ -74,7 +75,7 @@ const page = async( {params: {id}}: SearchParamProps ) => {
         <div className='ml-[270px] mt-4' >
          <div className='flex justify-between mr-[270px]'>
          <div>
-            <p className='text-blue-700 font-semibold'>5 Nov 2023 5:00 PM</p>
+            <p className='text-blue-700 font-semibold'>{formatDateTime(event.startDate).dateTime}</p>
             <h1 className='text-2xl font-semibold mt-2'>
               {event.title}
             </h1>
