@@ -11,7 +11,7 @@ const Orderactioncomponent = ({order} : any) => {
     
 
   return (
-    <AlertDialogAction  className='bg-orange-700'>Register</AlertDialogAction>
+    <AlertDialogAction type='submit' className='bg-orange-700'>Register</AlertDialogAction>
   )
 }
 

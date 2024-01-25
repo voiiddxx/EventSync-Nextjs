@@ -4,17 +4,40 @@ import connectToDatabase from "../database/mongodb";
 import User from "../database/models/user.model";
 import Event from "../database/models/event.model";
 import { revalidatePath } from "next/cache";
-import { GetAllEventsParams, GeteventcreatedByuserParams, createEventParams } from "@/types";
+import { GetAllEventsParams, GeteventcreatedByuserParams, UpdatevenetsParams, createEventParams } from "@/types";
 
 
 
-        const populateEvent = async ( query: any) => {
+    const populateEvent = async ( query: any) => {
             return query
             .populate({ path: 'organizer', model: User, select: '_id username' })
 
         }
 
-export const getEventById = async  ( eventId: string) => {
+
+
+    
+    export const editEvents = async ( eventData : UpdatevenetsParams) => {
+        try {
+            connectToDatabase();
+            const event = await Event.findByIdAndUpdate(eventData.event._id , {...eventData} , {
+                new:true
+            });
+            return JSON.parse(JSON.stringify(event));
+            
+        } catch (error) {
+            console.log(error);
+            
+            throw new Error("Some issued arised");
+        }
+    }
+    
+
+
+
+
+
+    export const getEventById = async  ( eventId: string) => {
     try {
         
         connectToDatabase();
@@ -37,6 +60,7 @@ export const getEventById = async  ( eventId: string) => {
             await connectToDatabase();
             const titlecondition = query ? {title: {$regex:query , $options:'i'}}: {}
 
+
             const conditions = {
                 $and: [titlecondition]
             };
@@ -55,6 +79,8 @@ export const getEventById = async  ( eventId: string) => {
         }
     }
 
+
+    
 
     export const getEventcreatedbyUser = async ({userId , limit = 6 , page} : GeteventcreatedByuserParams) => {
         try {
@@ -108,3 +134,5 @@ export const createEvent = async ({userId , event , path} : createEventParams) =
         
     }
 }
+
+

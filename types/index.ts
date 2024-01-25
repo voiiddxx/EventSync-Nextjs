@@ -60,3 +60,19 @@ export type SearchParamProps = {
     event: any
     createdAt?: Date
   }
+
+
+  export type UpdatevenetsParams = {
+ 
+    event:{
+        _id:string
+        title: string,
+        price?:string,
+        startDate:Date,
+        endDate:Date,
+        detail:string,
+        imageUrl:string,
+        url:string,
+    },
+   
+  }
