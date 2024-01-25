@@ -1,4 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![event](https://github.com/voiiddxx/EventSync/assets/95859137/661d4226-8adc-4028-a3de-ea4b13cbb845)
+
+
+# EventSync🌩️
+
+EventSync is a platform build by using next js for imporving the event organizing behaviour in colleges , implemnted features like authentication , create Event , update event , explore event , participate event and many more
+
+# Tech Stack 💻
+
+### Client
+- Next JS
+- Tailwind CSS
+- Shadcn Ui
+- CLERK
+- Server components
+- Nextjs actions
+
+### Storage
+- MongoDB To store the Database
+- Mongoose schemas to model the application data
+- Cloudinary For media Storage
+### Deployment
+- Vercel for client deployment
+
+
+
+
+
+## Screenshots
+
+- #### Will Upload soon
+
+## Demo
+- The Webiste is Live at https://event-sync-pi.vercel.app/
+Try it on desktop only
+
+
+### Will Uploading demo video soon
+
+
+
+
+## Support
+
+For support, email nikhildesign@gmail.com
+
+
 
 ## Getting Started
 
