@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import OrderButton from '@/components/shared/OrderButton';
 import { formatDateTime } from '@/lib/utils';
+import Link from 'next/link';
 
 
 
@@ -112,7 +113,8 @@ const page = async( {params: {id}}: SearchParamProps ) => {
          </div>
 
          <div>
-          <p className='mt-6 text-lg' >Event Link : <span className='text-blue-800 font-semibold'>{event.url}</span></p>
+          <p className='mt-6 text-lg' >Event Link : <span className='text-blue-800 font-semibold'>
+            <Link href={event.url}>{event.url}</Link></span></p>
          </div>
         </div>
         <div className='mt-10'>

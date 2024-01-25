@@ -11,13 +11,20 @@ const page = async () => {
 
   
   return (
-    <div className="min-h-screen w-full bg-slate-50">
-     <div className="h-20 w-full bg-slate-200 flex items-start justify-center flex-col pl-14">
-        <h1>Create Event</h1>
-        <p>Please fill all the imformation details to crerate Event</p>
+    <div className="min-h-screen w-full ">
+      
+     <div className="h-20 w-full flex items-start justify-center flex-col pl-14 mt-9">
+
+        <h1 className="font-bold text-2xl ml-80" >Create Event</h1>
+
+        <p className="ml-80 font-normal text-gray-700">Please fill all the imformation details to crerate Event</p>
+
      </div>
+
      <div className="min-h-[650px] w-full bg-white flex justify-center items-center">
+
      <Eventform userId={userId}/>
+
      </div>
     </div>
   )

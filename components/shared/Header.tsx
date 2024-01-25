@@ -10,6 +10,14 @@ const Header = () => {
       <div className='h-20 w-full bg-transparent flex items-center justify-around'>
         <h1 className='font-bold text-black '>EventSync</h1>
         <SignedIn>
+          <div className='flex gap-5 font-medium text-gray-800'>
+            <p>Home</p>
+            <Link href={`/profile`}><p>profile</p></Link>
+            <Link href={`/profile`}><p>Orders</p></Link>
+            <Link href={`/events/create`}><p>Create Event</p></Link>
+          </div>
+        </SignedIn>
+        <SignedIn>
             <UserButton afterSignOutUrl='/'></UserButton>
         </SignedIn>
         <SignedOut>
