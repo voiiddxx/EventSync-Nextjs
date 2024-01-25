@@ -74,5 +74,6 @@ export type SearchParamProps = {
         imageUrl:string,
         url:string,
     },
+    path:string
    
   }

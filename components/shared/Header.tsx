@@ -8,10 +8,10 @@ const Header = () => {
   return (
     <div className="nav-hero">
       <div className='h-20 w-full bg-transparent flex items-center justify-around'>
-        <h1 className='font-bold text-black '>EventSync</h1>
+        <Link href={`/`} ><h1 className='font-bold text-black '>EventSync</h1></Link>
         <SignedIn>
           <div className='flex gap-5 font-medium text-gray-800'>
-            <p>Home</p>
+            <Link href={`/`}><p>Home</p></Link>
             <Link href={`/profile`}><p>profile</p></Link>
             <Link href={`/profile`}><p>Orders</p></Link>
             <Link href={`/events/create`}><p>Create Event</p></Link>

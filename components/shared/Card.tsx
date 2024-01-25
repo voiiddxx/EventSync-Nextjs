@@ -7,7 +7,6 @@ import Link from "next/link"
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -32,6 +31,8 @@ import { useState } from "react"
 import axios from 'axios';
 import { editEvents } from "@/lib/actions/event.action"
 import { useRouter } from "next/navigation"
+
+
 
 type cardprops = {
   curr: IEvent
@@ -81,11 +82,14 @@ const Card = ({curr , hasOrderLink , allEvents , OrganizedEvent} : cardprops) =>
       formdata.append("upload_preset" , "pdrcp1le");
       const response = await axios.post("https://api.cloudinary.com/v1_1/dwkmxsthr/upload" , formdata ,);
       const imagedata = await response.data;
-      console.log("this is imager url",imagedata.url);
+ 
         const newEvent = await editEvents({event:{
-          ...values, imageUrl: imagedata.url,
-          _id: curr._id
-        }})
+          ...values,
+           imageUrl: imagedata.url,
+          _id: curr._id,
+        },
+        
+         path:`/events/${curr._id}`})
 
         if(newEvent){
           form.reset();

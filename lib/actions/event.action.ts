@@ -17,18 +17,27 @@ import { GetAllEventsParams, GeteventcreatedByuserParams, UpdatevenetsParams, cr
 
 
     
-    export const editEvents = async ( eventData : UpdatevenetsParams) => {
+    export const editEvents = async ( {event , path }: UpdatevenetsParams) => {
+     
+        
         try {
             connectToDatabase();
-            const event = await Event.findByIdAndUpdate(eventData.event._id , {...eventData} , {
-                new:true
-            });
-            return JSON.parse(JSON.stringify(event));
+
+            const getEvent = await Event.findById(event._id);
+            console.log(getEvent);
             
+            const updatedEvent = await Event.findByIdAndUpdate(
+                event._id,
+                { ...event},
+                { new: true }
+              )
+              console.log(updatedEvent);
+              
+              revalidatePath(path);
+          
+              return JSON.parse(JSON.stringify(updatedEvent))
         } catch (error) {
             console.log(error);
-            
-            throw new Error("Some issued arised");
         }
     }
     
