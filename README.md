@@ -14,6 +14,8 @@ EventSync is a platform build by using next js for imporving the event organizin
 - CLERK
 - Server components
 - Nextjs actions
+- React hook form
+- Zod
 
 ### Storage
 - MongoDB To store the Database
